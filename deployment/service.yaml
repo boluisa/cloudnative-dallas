@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: webhook-svc
+  name: admission-webhook-example-svc
   labels:
-    app: webhook-example
+    app: admission-webhook-example
 spec:
   ports:
   - port: 443
     targetPort: 443
   selector:
-    app: webhook-example
+    app: admission-webhook-example

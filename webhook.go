@@ -29,7 +29,7 @@ const (
 	prodKey = "tunde.meetup.com/prod"
 )
 const (
-	setProdNamespacePatch string = `[
+	setProdLabelPatch string = `[
          { "op": "add", "path": "/metadata/labels/env", "value": "prod" }
      ]`
 )
@@ -54,7 +54,7 @@ type WhSvrParameters struct {
 }
 
 func (whsvr *WebhookServer) validate(ar *v1beta1.AdmissionReview) *v1beta1.AdmissionResponse {
-	klog.V(2).Info("calling check  if annotation exist")
+	klog.V(2).Info("calling check if name=dallas-demo")
 
 	req := ar.Request
 	var deployment appsv1.Deployment
@@ -69,16 +69,15 @@ func (whsvr *WebhookServer) validate(ar *v1beta1.AdmissionReview) *v1beta1.Admis
 
 	reviewResponse := v1beta1.AdmissionResponse{}
 
-	if deployment.GetAnnotations() == nil {
+	if deployment.ObjectMeta.Name != "dallas-demo" {
 		reviewResponse.Allowed = false
-		p := deployment.GetAnnotations()
-		reviewResponse.Result = &metav1.Status{Message: "no valid annotation specified"}
-		glog.Errorf("annotation field is set to: %v", p)
+		p := deployment.GetName()
+		reviewResponse.Result = &metav1.Status{Message: "Name has to be dallas demo or you go home"}
+		glog.Errorf("Name field is set to: %v", p)
 	} else {
 		reviewResponse.Allowed = true
-		p := deployment.GetAnnotations()
-		reviewResponse.Result = &metav1.Status{Message: "demo gods are with you"}
-		glog.Errorf("annotation field is set to: %v", p)
+		p := deployment.GetName()
+		glog.Errorf("Name field is set to: %v", p)
 	}
 
 	return &reviewResponse
@@ -108,7 +107,7 @@ func (whsvr *WebhookServer) mutate(ar *v1beta1.AdmissionReview) *v1beta1.Admissi
 	statusProd := annotations[prodKey]
 
 	if strings.ToLower(statusProd) == "true" {
-		reviewResponse.Patch = []byte(setProdNamespacePatch)
+		reviewResponse.Patch = []byte(setProdLabelPatch)
 		reviewResponse.Allowed = true
 		reviewResponse.Result = &metav1.Status{Message: "demo gods are with you"}
 		p := statusProd
