@@ -3,10 +3,10 @@ kind: ClusterRole
 metadata:
   name: admission-webhook-example-cr
   labels:
-    app: admission-webhook-example
+    app: webhook-example
 rules:
 - apiGroups:
-  - banzaicloud.com
+  - tunde.meetup.com
   resources:
   - "*"
   verbs:

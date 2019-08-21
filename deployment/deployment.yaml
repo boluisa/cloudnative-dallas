@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: admission-webhook-example-deployment
+  name: webhook
   labels:
-    app: admission-webhook-example
+    app: webhook-example
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: admission-webhook-example
+      app: webhook-example
   template:
     metadata:
       labels:
-        app: admission-webhook-example
+        app: webhook-example
     spec:
       containers:
         - name: admission-webhook-example
-          image: boluisa/hook:v1
+          image: webhook:v1
           imagePullPolicy: Always
           args:
             - -tlsCertFile=/etc/webhook/certs/cert.pem

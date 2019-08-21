@@ -3,15 +3,15 @@ kind: MutatingWebhookConfiguration
 metadata:
   name: mutating-webhook-example-cfg
   labels:
-    app: admission-webhook-example
+    app: webhook-example
 webhooks:
   - name: tunde.meetup.com
     clientConfig:
       service:
-        name: admission-webhook-example-svc
+        name: webhook-svc
         namespace: default
         path: "/mutate"
-      caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNU1EZ3lNVEF4TkRnd01sb1hEVEk1TURneE9EQXhORGd3TWxvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTDhLCm9seVJCZDRJSERRZ2RWcWpFa0ZjUy9ZNnJ2WHEwcUhESnBzZzdwSE5hZ3pwZDVZTVpBNktoQUoydE12OG1QclAKRGtVOHNpcm9lTGtYdkh2SWtkYk85UEx6NC9IQWgwcjNnSGllSmVrd1U2RDVralZlemtkRjM2RzA4M09wNEIzWAo2RXEwVG9XSVlGSkhTS1BkOHA4SW5pd2NiSloxK0NXeXh0bysrLzdjVlppOU9sYVpFcFNER0pzQnlzNjNub1BGClZCbFdnN0dMVklrczVoSzBzTFpDajY1dWFlcEpKT1hxRUF3OEZyd1d0TWJXYlQrUjhGUnV5UUhNWi9pdXpwakgKZWZyUjhiM0VGVk50UGFUVTFsV3h4NmZrM05lUk5WRHhPeU54b2EvZmlDYmZXK3FhQ2ZpeWNaeHI3SzExNTZrTwo1WmNyck1VKy9iZmUwWHFNa0xrQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFDOWVRN0oyYnhCODlYUzJJOGJzQ1Zxa2tCRlIKV3poQ1cvaVJsZllRQTFLZVFqMlNHWVpIVldHdkdHckxaUmN2QlJpa1dxSVdkc0JkTFUwdmRHQVVLamt1WFZSdgptUm9xUVlJYU5KN3Z4QTFrWVFtMXoyKzk1dDJsTENFbkd5dmpERStvZThBTmJPVzEwdHg3WGI4RVNXTnBpYXpVCnlRR3hrWlk2SDJaaDRoc0pLK0lmRnZ3dEpZblUvenBzVDNmUXkvRDgvd1QzdUMrTldLeFNzUmJOc2hpUk5UelMKdklhcDRwVHVUbkdaNE40YjlZRUtIdFFQOVNoRzVEbFE1K2ZXWXpOL3JHd0VJa3ZqMzNIVHZabTdibU4rYWYrWgpQWWxnUGxsNVJid21OdE9LaXFXbTI2dnBHWHRRSU93OHVyQnVRckZtUnB4ZGFiZWtteTBEanBJYWpyMD0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+      caBundle: 
     rules:
       - operations: [ "CREATE" ]
         apiGroups: ["apps", ""]
@@ -19,4 +19,4 @@ webhooks:
         resources: ["deployments"]
     namespaceSelector:
       matchLabels:
-        admission-webhook-example: enabled
+        webhook-example: enabled
