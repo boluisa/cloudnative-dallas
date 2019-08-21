@@ -30,7 +30,7 @@ const (
 )
 const (
 	setProdNamespacePatch string = `[
-         { "op": "replace", "path": "/metadata/namespace", "value": {"namespace": "prod"}}
+         { "op": "add", "path": "/metadata/labels/env", "value": "prod" }
      ]`
 )
 
@@ -87,7 +87,7 @@ func (whsvr *WebhookServer) validate(ar *v1beta1.AdmissionReview) *v1beta1.Admis
 
 // main mutation process
 func (whsvr *WebhookServer) mutate(ar *v1beta1.AdmissionReview) *v1beta1.AdmissionResponse {
-	klog.V(2).Info("calling add-namespace")
+	klog.V(2).Info("calling add-label")
 	//obj := struct {
 	//	metav1.ObjectMeta
 	//	Data map[string]string

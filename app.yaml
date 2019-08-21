@@ -5,7 +5,7 @@ metadata:
     app: nginx
   name: nginx
   annotations:
-    tunde.meetup.com/prod: "true"
+    tunde.meetup.com/prod: "false"
 spec:
   replicas: 1
   selector:
