@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webhook
+  name: admission-webhook-example-deployment
   labels:
-    app: webhook-example
+    app: admission-webhook-example
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: webhook-example
+      app: admission-webhook-example
   template:
     metadata:
       labels:
-        app: webhook-example
+        app: admission-webhook-example
     spec:
       containers:
         - name: admission-webhook-example
-          image: webhook:v1
+          image: {User}/webhook:v1
           imagePullPolicy: Always
           args:
             - -tlsCertFile=/etc/webhook/certs/cert.pem
@@ -32,3 +32,4 @@ spec:
         - name: webhook-certs
           secret:
             secretName: admission-webhook-example-certs
+

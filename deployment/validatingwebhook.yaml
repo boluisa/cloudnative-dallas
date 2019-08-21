@@ -3,15 +3,15 @@ kind: ValidatingWebhookConfiguration
 metadata:
   name: validation-webhook-example-cfg
   labels:
-    app: webhook-example
+    app: admission-webhook-example
 webhooks:
   - name: tunde.meetup.com
     clientConfig:
       service:
-        name: webhook-svc
+        name: admission-webhook-example-svc
         namespace: default
         path: "/validate"
-      caBundle: 
+      caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNU1EZ3lNVEU1TWpjeU1Gb1hEVEk1TURneE9ERTVNamN5TUZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTDVkClpsMXpzQVhrakE0by9mN0tleHE0TXFGQWdLM01jNmI2T1Zibm9aV25OS2NrME1vYUQweS9MSmRLbTl0VjlhVnYKSHdFR1ZaMjU5UzhJSnJRNlRtU25SSS9mTERON3lOa3E0Ris3SU9hUkxXWWhRWmdTcnl4SGp3MDE0RXZrU3AzSwpPL2N4R0E4akZrTVpTa29WME9KK2Z6UW5TM1pHWG9peDNPMHpmRjh6S1d0M2I5NG1qVHRncjc3T2lPemYvV3QvCklEMWJ6QTg4ZUdnS2tTTHR1RU5MdmVPVGQ0MkVuem1Td3dQbkR5YWlvKytCVWhzb1dIUGN0OFBnMkZqYVgrN2gKdEpLVnRCenJ1WnRJcWh1ZGFEcXI2N0FWZkphSWx3cXE4bWNkbkZmS0t1RTNCSWtHZ0p2NE8xSWhxWEZoQVJ5SwpHWHAzWC9SMVhTYnNhWEp3M2FjQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFJQTQ4elFkNWduSGFEVFh0SERqSGlIR1BoY24KdDlaVCs1N1A5REhZQTUza2toY3l4Y3pSSUZhNEZ3NWdZRkZXQXkzajdEY1Mwci9QbmJIcHNtL28reXhDdmFNNApwTWIzaHg3c0pYTHlWTkxoTTc3V2x1VElDU0lKRi94NHRIcnN3Y3ZPNW1PSWhlcWFLU0VxdVBJVE84NmhIeXpYCmxhNzN2eUIzU1g1cHBSQWovbGM3TXR1SDJpTFdob2ZvZlVIZDlWNGo3a2Z5aFRwV3RYVUkwc2RBQkdwZ3N0Z2sKWFJTZldJNmxzNEcxUkVhWHNnY3dOUG9GaEw3K3NwQ25lOCtWRldCNGtWTzZHMCtIZE5ZcmhKdEVDNkhHeHhINwpKeUVUdjBQVkUzVWxTVDJHV1VFaCt3NThxU2wvYzVCdS9IZUFiRmlFTDlibStYVEhTaGdJOVZ2ZHhXZz0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
     rules:
       - operations: [ "CREATE" ]
         apiGroups: ["apps", ""]
@@ -19,4 +19,4 @@ webhooks:
         resources: ["deployments"]
     namespaceSelector:
       matchLabels:
-        webhook-example: enabled
+        admission-webhook-example: enabled

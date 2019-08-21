@@ -3,7 +3,7 @@ kind: ClusterRole
 metadata:
   name: admission-webhook-example-cr
   labels:
-    app: webhook-example
+    app: admission-webhook-example
 rules:
 - apiGroups:
   - tunde.meetup.com
