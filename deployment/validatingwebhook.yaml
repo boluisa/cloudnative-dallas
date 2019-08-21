@@ -5,18 +5,18 @@ metadata:
   labels:
     app: admission-webhook-example
 webhooks:
-  - name: required-labels.banzaicloud.com
+  - name: tunde.meetup.com
     clientConfig:
       service:
-        name: admission-webhook-example-webhook-svc
+        name: admission-webhook-example-svc
         namespace: default
         path: "/validate"
-      caBundle: ${CA_BUNDLE}
+      caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNU1EWXdOREl5TlRneU5Wb1hEVEk1TURZd01USXlOVGd5TlZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTDJVCnptaENSWmxnZ1RuSTF1dDhzemZUTzQyczRYNWlEQXQ3c2IvWHprVWRKZWpOQlcwcWRXZzdkRTFOcVpxYjRSWTgKaW5kaDB6b0p4dXBYeG92c1ZkeUJYWWRyZFpSQVZ5MUhBMnZqU25PMTlDZDdUeUducDNqZmx1TmVvU0N4TkZSMwpHT2dPQlVIWlAxU0lsRGVBdWJ4N0l0RE1Obm1hQ3g5U1pVUFJ4UUlzSXV1Sjk1endCcDg1ckpGK1B6NDcxeHB6ClhhWXJQbUtmd3hka05BNXc5L1E2ZkNGalpkeCt3RElwN1hWNUtMd1lCakhFd0F6cTgrQTJqMi9aUEZvalpIOUcKVUlvYy9uelEzWVZvRDR0Y09pY2ZWRkR0WHZuRjRVMTBQVzlmaXJENmF2eHZpOU42d0lHMXlSVWNOb0NNcEM5eAo4dStuNU5rejdFK201dFo5M2lNQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFKUGJCVk9IaXVsL3pCeStOWHFBcjdNZmtnK2sKZXVaNC9RUjV1WGRKWkliSGFLY2xGY2hGQzZwcUdPVmF4V1MyK2R3alRqY3BmOXFxN2xlemtISEVLS05GM0UxdQoyWERmVUFNdVptNGdWOFFpZGRpMm01VldpeHdJRDdrM2xmZnBtUmtsV0NaZTFYU1V1V0QwL09ET3BERU8vRnc1ClovenNFUCtrVFptajZoQXhNRjdpZFhuQWlJUlRGeHRDMk1GTGlkUzdaaGJLcWZkcitrNkZ6MXQrc2dlVU1ndzEKUDhqV3dUaWo0V2FsaEV1RGF3OHZodDd2UEQyYmsvYk53RytSU2dTQ3huRjJYT2hkOWNocEFZN3ZYaForc0tYTAo1bUpoS3RiT2FwN3B4RlQrUUROTklxYklYd3NWNExpYWltWjRSc1pFKyszTXgydE1qSDRqODBxRk54ST0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
     rules:
       - operations: [ "CREATE" ]
         apiGroups: ["apps", ""]
         apiVersions: ["v1"]
-        resources: ["deployments","services"]
+        resources: ["deployments"]
     namespaceSelector:
       matchLabels:
         admission-webhook-example: enabled
